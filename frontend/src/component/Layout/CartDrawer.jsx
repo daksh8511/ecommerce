@@ -1,7 +1,12 @@
 import { IoClose } from "react-icons/io5";
 import CartContents from "../Cart/CartContents";
+import { useNavigate } from "react-router-dom";
 
 const CartDrawer = ({ cartDrawer, setCartDrawer }) => {
+  const navigate = useNavigate()
+  const handleCheckout = () => {
+    navigate('/checkout')
+  }
   return (
     <div
       className={`fixed top-0 right-0 w-4/4 sm:w-1/2 md:w-2/5 h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 ${
@@ -17,7 +22,7 @@ const CartDrawer = ({ cartDrawer, setCartDrawer }) => {
         <h2 className="text-xl font-semibold mb-4">Your cart</h2>
         <CartContents />
       </div>
-      <div className="p-4 bg-white sticky bottom-0">
+      <div onClick={handleCheckout} className="p-4 bg-white sticky bottom-0">
         <button className="w-full bg-black text-white py-3 rounded-full font-semibold hove:bg-gray-800 transition">
           Checkout
         </button>

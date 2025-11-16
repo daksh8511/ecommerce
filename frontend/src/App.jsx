@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import CollectionPage from "./pages/CollectionPage";
+import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./pages/Checkout";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="profile" element={<Profile />} />
           <Route path="collections/:collection" element={<CollectionPage />} />
+          <Route path="product/:id" element={<ProductDetails />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route>{/*Admin layout*/}</Route>
       </Routes>
