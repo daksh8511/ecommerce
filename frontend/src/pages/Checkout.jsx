@@ -1,45 +1,53 @@
 import React, { useState } from "react";
+import PaypalButton from "../component/Cart/PaypalButton";
 
 const Checkout = () => {
   const [shippingAddress, setShippingAddress] = useState({
-    firstName: "daksh",
-    lastName: "sathwara",
-    address: "Maninagar",
-    city: "ahmedabad",
-    postalCode: "380008",
-    country: "India",
-    phone_number: 8511893083,
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    phone_number: 0,
   });
 
   const [checkoutid, setCheckoutud] = useState("");
 
-  const cart = [
-    {
-      products: [
-        {
-          id: 1,
-          name: "Stylish jacket",
-          color: "Black",
-          sie: "M",
-          price: 120,
-          image: "https://picsum.photos/150?random=1",
-        },
-        {
-          id: 2,
-          name: "Casual sneakers",
-          color: "Yellow",
-          sie: "S",
-          price: 150,
-          image: "https://picsum.photos/150?random=2",
-        },
-      ],
-      totalPrice: 270,
-    },
-  ];
+  // const cart = [
+  //   {
+  //     products: [
+  //       {
+  //         id: 1,
+  //         name: "Stylish jacket",
+  //         color: "Black",
+  //         sie: "M",
+  //         price: 120,
+  //         image: "https://picsum.photos/150?random=1",
+  //       },
+  //       {
+  //         id: 2,
+  //         name: "Casual sneakers",
+  //         color: "Yellow",
+  //         sie: "S",
+  //         price: 150,
+  //         image: "https://picsum.photos/150?random=2",
+  //       },
+  //     ],
+  //     totalPrice: 270,
+  //   },
+  // ];
+
+  const handlePaymentSuccess = (details) => {
+    console.log('detials : ', details)
+    NavigationHistoryEntry('/order-confirmation ')
+  }
+
   const handleCreateCheckout = (e) => {
     e.preventDefault();
     setCheckoutud(124)
   }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter">
       {/* left section */}
@@ -176,7 +184,11 @@ const Checkout = () => {
                 Checkout
               </button>
             ) : (
-              <h2>Pay with paypal</h2>
+              <>
+               <h2>Pay with paypal</h2>
+              <PaypalButton amount={100} onSuccess={handlePaymentSuccess} onError={() => alert('Payment failed. try again')} />
+              </>
+             
             )}
           </div>
         </form>
