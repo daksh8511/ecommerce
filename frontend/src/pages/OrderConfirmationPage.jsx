@@ -95,13 +95,12 @@ const OrderConfirmationPage = () => {
             </div>
             {/* delivery info */}
             <div>
-<h4 className="text-lg font-semibold mb-2">Delivery</h4>
-            <p className="text-gray-600">{shippingAddress?.address}</p>
-            <p className="text-gray-600">
-              {shippingAddress?.city} {shippingAddress?.country}
-            </p>
+              <h4 className="text-lg font-semibold mb-2">Delivery</h4>
+              <p className="text-gray-600">{shippingAddress?.address}</p>
+              <p className="text-gray-600">
+                {shippingAddress?.city} {shippingAddress?.country}
+              </p>
             </div>
-            
           </div>
         </div>
       )}
