@@ -4,15 +4,20 @@ const PaypalButton = ({ amount, onSuccess, onError }) => {
   return (
     <PayPalScriptProvider
       options={{
-        clientId:
-          "AcI0JVOndscnKbNhBkhfivoCteCCJ9IDF5K5KrAAxEZvKx4IBlp_dRtFRKivO6hV1zY3N4fq5ROE_QDe",
+        clientId: import.meta.env.VITE_PAYPAL_CLIENTID,
       }}
     >
       <PayPalButtons
         style={{ layout: "vertical" }}
         createOrder={(data, actions) => {
           return actions.order.create({
-            purchase_units: [{ amount: { value: amount.toString() } }],
+            purchase_units: [
+              {
+                amount: {
+                  value: amount.toString(),
+                },
+              },
+            ],
           });
         }}
         onApprove={(data, actions) => {

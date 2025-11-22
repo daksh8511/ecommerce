@@ -191,7 +191,7 @@ const Checkout = () => {
               <>
                 <h2>Pay with paypal</h2>
                 <PaypalButton
-                  amount={100}
+                  amount={10}
                   onSuccess={handlePaymentSuccess}
                   onError={() => alert("Payment failed. try again")}
                 />

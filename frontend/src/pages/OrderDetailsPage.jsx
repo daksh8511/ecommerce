@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
   const [orderDtails, setOrderDetails] = useState(null);
-  console.log(orderDtails);
   useEffect(() => {
     const mockOrderDetails = {
       _id: id,
@@ -89,10 +88,51 @@ const OrderDetailsPage = () => {
             <div>
               <h4 className="text-lg font-semibold mb-2">Shipping info</h4>
               <p>Shipping method : {orderDtails?.shippingMethod}</p>
-              <p>Address : </p>
+              <p>
+                Address : {orderDtails?.shippingAddress?.city},{" "}
+                {orderDtails?.shippingAddress?.country}{" "}
+              </p>
             </div>
-            
           </div>
+          {/* product list */}
+          <div className="overflow-x-auto">
+            <h4 className="text-lg font-semibold mb-4">Products</h4>
+            <table className="min-w-full text-gray-600 mb-4">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="py-2 px-4">Name</th>
+                  <th className="py-2 px-4">Unit price</th>
+                  <th className="py-2 px-4">Quantity</th>
+                  <th className="py-2 px-4">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderDtails?.orderItems?.map((items) => (
+                  <tr key={items?.productId} className="border-b">
+                    <td className="py-2 px-4 flex items-center  justify-center">
+                      <img
+                        src={items?.image}
+                        alt="image"
+                        className="w-12 h-12 object-cover rounded-lg mr-4"
+                      />
+                      <Link
+                        to={`/product/${items?.productId}`}
+                        className="text-blue-500 hover:underline"
+                      >
+                        {items?.name}
+                      </Link>
+                    </td>
+                    <td className="py-2 px-4 text-center">${items?.price}</td>
+                    <td className="py-2 px-4 text-center">${items?.quantity}</td>
+                    <td className="py-2 px-4 text-center">
+                      ${items?.price * items?.quantity}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <Link to={'/my-orders'} className="text-blue-500 hover:underline">Back to my orders</Link>
         </div>
       )}
     </div>
