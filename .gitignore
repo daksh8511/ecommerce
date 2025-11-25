@@ -1,11 +1,13 @@
+# Backend
 backend/node_modules/
 backend/.env
-backend/.gitignore
 
+# Frontend
 frontend/node_modules/
 frontend/.env
 
-frontend/.gitignore
+# Logs
+*.log
 
-.git
-.gitignore
+# System
+.DS_Store
